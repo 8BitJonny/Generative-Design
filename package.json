@@ -3,7 +3,9 @@
   "version": "1.0.0",
   "description": "",
   "main": "index.js",
-  "scripts": {},
+  "scripts": {
+    "deploy": "gh-pages -d src"
+  },
   "repository": {
     "type": "git",
     "url": "git+https://github.com/8BitJonny/Generative-Design.git"
@@ -13,5 +15,8 @@
   "bugs": {
     "url": "https://github.com/8BitJonny/Generative-Design/issues"
   },
-  "homepage": "https://github.com/8BitJonny/Generative-Design#readme"
+  "homepage": "https://github.com/8BitJonny/Generative-Design#readme",
+  "dependencies": {
+    "gh-pages": "^2.1.1"
+  }
 }
