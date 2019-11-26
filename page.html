@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8" />
+    <title>Generative Design</title>
+    <link rel="stylesheet" href="index.css">
+    <script src="https://cdn.jsdelivr.net/npm/p5@0.10.2/lib/p5.js"></script>
+    <script src="js/index.js"></script>
+    <script src="js/libraries/CCapture.all.min.js"></script>
+    <script src="js/libraries/noise.js"></script>
+    <script src="js/libraries/gif.worker.js"></script>
+    <script>
+        var capturer = new CCapture( {
+            framerate: 30,
+            format: 'png',
+            workersPath: './js/',
+            verbose: true
+        } );
+    </script>
+</head>
+<body>
+</body>
+</html>
