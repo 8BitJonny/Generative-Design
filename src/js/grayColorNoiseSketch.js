@@ -1,7 +1,9 @@
 let grayColorNoiseSketch = new p5(( sketch ) => {
     let simplex;
+    let currentFrame = 1;
     let numFrames = 75;
     let radius = 1.5;
+    let paused = true;
 
     sketch.setup = () => {
         sketch.createCanvas(600,300);
@@ -11,8 +13,31 @@ let grayColorNoiseSketch = new p5(( sketch ) => {
         simplex = new SimplexNoise();
     };
 
+    sketch.mouseReleased = () => {
+        paused = !paused;
+    };
+
+    function drawPauseScreen () {
+        sketch.textSize(30);
+        sketch.textAlign(sketch.CENTER, sketch.CENTER);
+        sketch.fill('#2DD881');
+        sketch.rect(200, 125, 200, 50, 10);
+        sketch.fill('white');
+        sketch.text('Click to play', 300, 150);
+    }
+
     sketch.draw = () => {
-        let t = sketch.frameCount/numFrames;
+        if (currentFrame > 500) {
+            paused = true;
+            currentFrame = 0;
+        }
+
+        if (paused && sketch.frameCount > 1) {
+            drawPauseScreen();
+            return;
+        }
+
+        let t = currentFrame/numFrames;
 
         let scale = 0.02;
         sketch.background(0);
@@ -42,6 +67,7 @@ let grayColorNoiseSketch = new p5(( sketch ) => {
             }
         }
         sketch.updatePixels();
+        currentFrame ++;
     }
 }, "grayColorNoiseSketch");
 
