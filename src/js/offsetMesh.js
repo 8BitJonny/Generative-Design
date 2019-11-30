@@ -1,7 +1,7 @@
 let offsetMesh = new p5(( sketch ) => {
-    const renderModeType = {"white":1, "color":2};
+    const renderModeType = {"white":1, "color":2, "text":3};
     Object.freeze(renderModeType);
-    let whiteIndexes = [ 115070, 115080, 115090, 115100, 115110, 115120, 115280, 120070, 120120, 125070, 125120, 125130, 125160, 125180, 125190, 125220, 125230, 125250, 125280, 125320, 125330, 125350, 125360, 125390, 125410, 125420, 125430, 130070, 130120, 130130, 130150, 130190, 130220, 130280, 130320, 130360, 130390, 130400, 130430, 135070, 135120, 135130, 135150, 135160, 135170, 135180, 135190, 135220, 135230, 135280, 135310, 135360, 135390, 135430, 140070, 140120, 140150, 140240, 140250, 140280, 140310, 140360, 140390, 140430, 145070, 145120, 145150, 145160, 145250, 145280, 145320, 145350, 145360, 145390, 145430, 150070, 150080, 150090, 150100, 150110, 150160, 150170, 150180, 150190, 150220, 150230, 150240, 150250, 150280, 150320, 150330, 150340, 150360, 150390, 150430, 155360, 160350, 165330, 165340 ];
+    let whiteIndexes = [144070,144080,144090,144100,144110,144120,144130,144350,144360,150070,150120,150130,150140,150350,150360,156070,156140,156150,162070,162140,162150,162200,162210,162220,162230,162280,162290,162300,162310,162350,162360,162400,162410,162420,162440,162470,162480,162500,162510,162520,168070,168150,168190,168230,168240,168270,168280,168310,168320,168350,168360,168390,168400,168430,168440,168470,168480,168490,168520,168530,174070,174150,174180,174190,174240,174270,174320,174350,174360,174380,174390,174440,174470,174480,174530,180070,180150,180180,180240,180270,180280,180290,180350,180360,180380,180390,180440,180470,180480,180530,186070,186140,186150,186180,186190,186200,186210,186220,186230,186240,186280,186290,186300,186310,186320,186350,186360,186380,186390,186440,186470,186480,186530,192070,192140,192150,192180,192320,192350,192360,192380,192390,192440,192470,192480,192530,198070,198130,198140,198180,198190,198230,198240,198270,198320,198350,198360,198380,198390,198430,198440,198470,198480,198530,204070,204080,204090,204100,204110,204120,204130,204140,204190,204200,204220,204230,204240,204270,204280,204310,204320,204350,204360,204390,204400,204410,204420,204430,204440,204470,204480,204530,210070,210080,210090,210100,210110,210200,210210,210220,210280,210290,210300,210310,210350,210360,210400,210410,210420,210440,210470,210480,210530,216440,222390,222430,222440,228390,228400,228410,228420,228430];
     let whiteIndexIndex = 0;
     let simplex;
     let currentFrame = 1;
@@ -12,17 +12,26 @@ let offsetMesh = new p5(( sketch ) => {
 
     let whiteCheckbox;
     let colorCheckbox;
+    let textCheckbox;
 
 
     sketch.setup = () => {
-        sketch.createCanvas(600,600);
+        let canvas = sketch.createCanvas(600,600);
+        canvas.elt.className = "canvas";
 
         sketch.frameRate(30);
 
+        sketch.createSpan("Display options: ");
+
         whiteCheckbox = sketch.createCheckbox('white', renderMode === renderModeType.white);
+        whiteCheckbox.elt.className = "option";
         colorCheckbox = sketch.createCheckbox('color', renderMode === renderModeType.color);
+        colorCheckbox.elt.className = "option";
+        textCheckbox = sketch.createCheckbox('text', renderMode === renderModeType.text);
+        textCheckbox.elt.className = "option";
         whiteCheckbox.changed(checkedWhite);
         colorCheckbox.changed(checkedColor);
+        textCheckbox.changed(checkedText);
 
         simplex = new OpenSimplexNoise();
     };
@@ -36,6 +45,7 @@ let offsetMesh = new p5(( sketch ) => {
 
     function checkedWhite() {
         if (this.checked()) {
+            textCheckbox.elt.children[0].checked = false;
             colorCheckbox.elt.children[0].checked = false;
             renderMode = renderModeType.white;
         } else {
@@ -45,10 +55,22 @@ let offsetMesh = new p5(( sketch ) => {
 
     function checkedColor() {
         if (this.checked()) {
+            textCheckbox.elt.children[0].checked = false;
             whiteCheckbox.elt.children[0].checked = false;
             renderMode = renderModeType.color;
         } else {
             colorCheckbox.elt.children[0].checked = true;
+        }
+    }
+
+    function checkedText() {
+        if (this.checked()) {
+            whiteCheckbox.elt.children[0].checked = false;
+            colorCheckbox.elt.children[0].checked = false;
+            renderMode = renderModeType.text;
+            console.log(renderMode)
+        } else {
+            textCheckbox.elt.children[0].checked = true;
         }
     }
 
@@ -75,7 +97,7 @@ let offsetMesh = new p5(( sketch ) => {
     }
 
     function printText(x,y) {
-        if (whiteIndexIndex < whiteIndexes.length && whiteIndexes[whiteIndexIndex] === y*width+x) {
+        if (whiteIndexIndex < whiteIndexes.length && whiteIndexes[whiteIndexIndex] === y*sketch.width+x) {
             whiteIndexIndex ++;
             sketch.stroke(255);
         } else {
@@ -109,6 +131,8 @@ let offsetMesh = new p5(( sketch ) => {
                 // These are the 3 ways of coloring the Grid. Uncomment one of these lines to use this coloring
                 if (renderMode === renderModeType.white) {
                     colorWhite()
+                } else if (renderMode === renderModeType.text) {
+                    printText(x,y)
                 } else {
                     colorColorful()
                 }
@@ -117,6 +141,7 @@ let offsetMesh = new p5(( sketch ) => {
                 sketch.point(x + offsetX,y + offsetY);
             }
         }
+        whiteIndexIndex = 0;
         currentFrame ++;
     }
 }, "offsetMesh");
