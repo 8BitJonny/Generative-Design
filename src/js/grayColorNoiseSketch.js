@@ -10,11 +10,14 @@ let grayColorNoiseSketch = new p5(( sketch ) => {
 
         sketch.frameRate(30);
 
-        simplex = new SimplexNoise();
+        simplex = new OpenSimplexNoise();
     };
 
     sketch.mouseReleased = () => {
-        paused = !paused;
+        if (sketch.mouseX >= 0 && sketch.mouseX <= sketch.width
+         && sketch.mouseY >= 0 && sketch.mouseY <= sketch.height) {
+            paused = !paused;
+        }
     };
 
     function drawPauseScreen () {
