@@ -34,8 +34,9 @@ footer {
     margin: 50px 0;
 }
 
-.sketch {
-    margin: 10px 0;
+.sketch, img {
+    margin: 20px 0;
+    width: 600px;
 }
 
 .canvas {
