@@ -39,6 +39,12 @@ footer {
     width: 600px;
 }
 
+.sketch {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
 .canvas {
     display: block;
 }
