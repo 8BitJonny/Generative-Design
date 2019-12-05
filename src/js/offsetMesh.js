@@ -80,7 +80,7 @@ let offsetMesh = new p5(( sketch ) => {
         sketch.fill('#2DD881');
         sketch.rect(200, 275, 200, 50, 10);
         sketch.fill('white');
-        sketch.text('Click to play', 300, 300);
+        sketch.text('Hover to play', 300, 300);
     }
 
     function calculateNoiseBasedOffset(x,y,t) {
@@ -106,12 +106,8 @@ let offsetMesh = new p5(( sketch ) => {
     }
 
     sketch.draw = () => {
-        if (currentFrame > 500) {
-            paused = true;
-            currentFrame = 0;
-        }
-
-        if (paused && sketch.frameCount > 1) {
+        if (currentFrame > 1 && (sketch.mouseX <= 0 || sketch.mouseX > sketch.width
+            || sketch.mouseY <= 0 || sketch.mouseY > sketch.height)) {
             drawPauseScreen();
             return;
         }
