@@ -1,4 +1,8 @@
 new p5(( sketch ) => {
+    const RenderModeType = {"horizontal":1, "vertical":2, "horizontal-mirrored":3, "vertical-mirrored": 4, "double-mirrored": 5};
+    Object.freeze(RenderModeType);
+    let selectedRenderMode = RenderModeType.horizontal;
+
     let length = 0;
     let maxLength = 30;
     let angle = 0;
@@ -7,10 +11,28 @@ new p5(( sketch ) => {
     let objects = [];
 
     let mouseStartPos = undefined;
+    let selectElement = undefined;
+
+    function setupSelectElement() {
+        selectElement = sketch.createSelect();
+
+        for (let property in RenderModeType) {
+            if (RenderModeType.hasOwnProperty(property)) {
+                selectElement.option(property, RenderModeType[property]);
+            }
+        }
+        selectElement.changed(handleSelectChange);
+    }
+
+    function handleSelectChange() {
+        selectedRenderMode = parseInt(selectElement.value());
+    }
 
     sketch.setup = () => {
-        sketch.createCanvas(300,300);
+        sketch.createCanvas(1000,500);
         sketch.angleMode(sketch.DEGREES);
+
+        setupSelectElement();
 
         sketch.background(0);
 
@@ -29,7 +51,6 @@ new p5(( sketch ) => {
         let halfHeight = sketch.height / 2;
 
         sketch.translate(mouseStartPos.x, mouseStartPos.y);
-        sketch.rotate(180);
 
         let xOffset = sketch.mouseX - mouseStartPos.x;
         let yOffset = sketch.mouseY - mouseStartPos.y;
@@ -39,24 +60,16 @@ new p5(( sketch ) => {
             angle = sketch.map(xOffset, -halfHeight, halfHeight, -maxAngle, maxAngle);
         }
 
-        drawNext(sketch, length, angle);
-        drawNext(sketch, length, -angle);
-        drawNext(sketch, -length, angle);
-        drawNext(sketch, -length, -angle);
-
-        sketch.rotate(90);
-
-        drawNext(sketch, length, angle);
-        drawNext(sketch, length, -angle);
-        drawNext(sketch, -length, angle);
-        drawNext(sketch, -length, -angle);
+        drawFigure(selectedRenderMode, length, angle);
 
         sketch.pop();
         sketch.redraw();
     };
 
     sketch.mouseReleased = () => {
-        objects.push({length: length, angle: angle, posX: mouseStartPos.x, posY: mouseStartPos.y });
+        if (mouseStartPos === undefined) return;
+
+        objects.push({length: length, angle: angle, renderMode: selectedRenderMode, posX: mouseStartPos.x, posY: mouseStartPos.y });
 
         mouseStartPos = undefined
     };
@@ -66,17 +79,8 @@ new p5(( sketch ) => {
             sketch.push();
             sketch.translate(object.posX, object.posY);
 
-            drawNext(sketch, object.length, object.angle);
-            drawNext(sketch, object.length, -object.angle);
-            drawNext(sketch, -object.length, object.angle);
-            drawNext(sketch, -object.length, -object.angle);
+            drawFigure(object.renderMode, object.length, object.angle);
 
-            sketch.rotate(90);
-
-            drawNext(sketch, object.length, object.angle);
-            drawNext(sketch, object.length, -object.angle);
-            drawNext(sketch, -object.length, object.angle);
-            drawNext(sketch, -object.length, -object.angle);
             sketch.pop()
         })
     };
@@ -94,5 +98,30 @@ new p5(( sketch ) => {
         drawNext(sketch, nextLength, angle);
         drawNext(sketch, nextLength, -angle);
         sketch.pop();
+    }
+
+    function drawFigure(renderMode, length, angle) {
+        if (renderMode === RenderModeType.vertical || renderMode === RenderModeType["vertical-mirrored"]) {
+            sketch.rotate(90);
+        }
+
+        drawNext(sketch, length, angle);
+        drawNext(sketch, length, -angle);
+
+        if (renderMode === RenderModeType["horizontal-mirrored"] ||
+            renderMode === RenderModeType["vertical-mirrored"] ||
+            renderMode === RenderModeType["double-mirrored"]) {
+            drawNext(sketch, -length, angle);
+            drawNext(sketch, -length, -angle);
+        }
+
+        if (renderMode === RenderModeType["double-mirrored"]) {
+            sketch.rotate(90);
+
+            drawNext(sketch, length, angle);
+            drawNext(sketch, length, -angle);
+            drawNext(sketch, -length, angle);
+            drawNext(sketch, -length, -angle);
+        }
     }
 }, "lS_9");

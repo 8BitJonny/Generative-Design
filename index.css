@@ -8,7 +8,8 @@ body {
     background-color: #282828;
     color: white;
     margin: 50px auto;
-    width: 600px;
+    padding: 0 50px;
+    max-width: 1000px;
     display: flex;
     flex-direction: column;
     justify-content: center;
@@ -17,6 +18,10 @@ body {
 
 p {
     line-height: 1.5;
+}
+
+a {
+    color: #9CFC97;
 }
 
 footer {
@@ -39,17 +44,90 @@ footer {
     width: 600px;
 }
 
+.small {
+    width: 400px;
+    height: 400px;
+}
+
+.tiny {
+    width: 200px;
+    height: 200px;
+}
+
 .sketch {
     display: flex;
     flex-direction: column;
     align-items: center;
 }
 
+.row {
+    display: flex;
+}
+
 .canvas {
     display: block;
+}
+
+.linkWrapper {
+    width: 100%;
+    display: flex;
+    justify-content: space-between;
+    margin: 1rem 0 2rem 0;
+}
+
+.link {
+    display: flex;
+    align-items: center;
+    color: #9CFC97;
+}
+
+.link > * {
+    padding: 0 5px;
+}
+
+.icon {
+    margin: 0;
+    align-self: flex-end;
+    width: 42px;
+    height: 42px;
 }
 
 .option {
     display: inline-block;
     margin: 10px 10px 0 0;
+}
+
+.tooltip {
+    position: relative;
+    display: inline-block;
+}
+
+.tooltip .tooltiptext {
+    visibility: hidden;
+    width: 120px;
+    color: #fff;
+    text-align: center;
+    position: absolute;
+    z-index: 1;
+    bottom: -100%;
+    left: 50%;
+    margin-left: -60px;
+    opacity: 0;
+    transition: opacity 0.3s;
+}
+
+.tooltip .tooltiptext::before {
+    content: "";
+    position: absolute;
+    bottom: 100%;
+    left: 50%;
+    margin-left: -5px;
+    border-width: 5px;
+    border-style: solid;
+    border-color: transparent transparent #FFF transparent;
+}
+
+.tooltip:hover .tooltiptext {
+    visibility: visible;
+    opacity: 1;
 }

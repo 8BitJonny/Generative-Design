@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Generative Design</title>
+    <link rel="stylesheet" href="index.css">
+    <link rel="shortcut icon" type="image/x-icon" href="/media/favicon.ico"/>
+    <link href="https://fonts.googleapis.com/css?family=Press+Start+2P&display=swap" rel="stylesheet">
+    <script src="https://cdn.jsdelivr.net/npm/p5@0.10.2/lib/p5.js"></script>
+    <script src="js/latestSketch/lS_1.js"></script>
+    <script src="js/latestSketch/lS_2.js"></script>
+    <script src="js/latestSketch/lS_3.js"></script>
+    <script src="js/latestSketch/lS_4.js"></script>
+</head>
+<body>
+<a class="icon tooltip" href="https://github.com/8BitJonny/Generative-Design" target="_blank" rel="noopener noreferrer">
+    <img class="icon" src="media/GitHub-Mark-Light-120px-plus.png" alt="">
+    <span class="tooltiptext">Source Code</span>
+</a>
+<div class="header">
+        <pre>
+ ██████╗ ███████╗███╗   ██╗███████╗██████╗  █████╗ ████████╗██╗██╗   ██╗███████╗
+██╔════╝ ██╔════╝████╗  ██║██╔════╝██╔══██╗██╔══██╗╚══██╔══╝██║██║   ██║██╔════╝
+██║  ███╗█████╗  ██╔██╗ ██║█████╗  ██████╔╝███████║   ██║   ██║██║   ██║█████╗
+██║   ██║██╔══╝  ██║╚██╗██║██╔══╝  ██╔══██╗██╔══██║   ██║   ██║╚██╗ ██╔╝██╔══╝
+╚██████╔╝███████╗██║ ╚████║███████╗██║  ██║██║  ██║   ██║   ██║ ╚████╔╝ ███████╗
+ ╚═════╝ ╚══════╝╚═╝  ╚═══╝╚══════╝╚═╝  ╚═╝╚═╝  ╚═╝   ╚═╝   ╚═╝  ╚═══╝  ╚══════╝
+        </pre>
+    <br/>
+    <pre>
+██████╗ ███████╗███████╗██╗ ██████╗ ███╗   ██╗
+██╔══██╗██╔════╝██╔════╝██║██╔════╝ ████╗  ██║
+██║  ██║█████╗  ███████╗██║██║  ███╗██╔██╗ ██║
+██║  ██║██╔══╝  ╚════██║██║██║   ██║██║╚██╗██║
+██████╔╝███████╗███████║██║╚██████╔╝██║ ╚████║
+╚═════╝ ╚══════╝╚══════╝╚═╝ ╚═════╝ ╚═╝  ╚═══╝
+        </pre>
+</div>
+
+<div class="linkWrapper">
+    <div class="link">
+        <span>&#8678;</span>
+        <a href="/"><span>Previous page </span></a>
+    </div>
+    <div class="link">
+        <a href="/latestSketch5-8.html"><span>Next page </span></a>
+        <span>&#8680;</span>
+    </div>
+</div>
+
+<h2>Versions 1 - 4</h2>
+
+<p>Now we finally move one to the new sketch that I created to show the process of creating one from start to finish.</p>
+
+<p>
+    For this one, I took some inspiration from an image that I've seen a few years back and that was stuck in my head ever since.
+    It was the image of a tree that only consisted of a few basic lines. And this image of a tree was achieved by a recursive function.
+
+    So I took this as a starting point and tried over the following four different versions to get a recursive function that makes every branch
+    a bit shorter than the previous branch and with always the same angle to the previous branch.
+
+    For that, I used the 'push()' 'pop' concept of P5.JS which lets you save a drawing context and get back to it. This way I had an easy time going back up in the call stack of the
+    recursive function and to draw at the position where I left off.
+</p>
+
+<div class="row">
+    <div class="sketch small" id="lS_1">
+        <p>Version 1</p>
+    </div>
+
+    <div class="sketch small" id="lS_2">
+        <p>Version 2</p>
+    </div>
+</div>
+
+<div class="row">
+    <div class="sketch small" id="lS_3">
+        <p>Version 3</p>
+    </div>
+
+    <div class="sketch small" id="lS_4">
+        <p>Version 4</p>
+    </div>
+</div>
+
+<p>
+    In version 4 you can see that we have a basic tree wherefrom each branch, two new branches start. This happens until we get under a minimum length of the branch because
+    otherwise,the recursive function wouldn't stop.
+</p>
+
+<footer>created by Timon Christiansen</footer>
+</body>
+</html>

@@ -4,25 +4,20 @@
     <meta charset="UTF-8">
     <title>Generative Design</title>
     <link rel="stylesheet" href="index.css">
-    <link rel="shortcut icon" type="image/x-icon" href="/favicon.ico"/>
+    <link rel="shortcut icon" type="image/x-icon" href="/media/favicon.ico"/>
     <link href="https://fonts.googleapis.com/css?family=Press+Start+2P&display=swap" rel="stylesheet">
     <script src="https://cdn.jsdelivr.net/npm/p5@0.10.2/lib/p5.js"></script>
     <script src="js/grayColorNoiseSketch.js"></script>
     <script src="js/offsetMesh.js"></script>
-    <script src="js/latestSketch/lS_1.js"></script>
-    <script src="js/latestSketch/lS_2.js"></script>
-    <script src="js/latestSketch/lS_3.js"></script>
-    <script src="js/latestSketch/lS_4.js"></script>
-    <script src="js/latestSketch/lS_5.js"></script>
-    <script src="js/latestSketch/lS_6.js"></script>
-    <script src="js/latestSketch/lS_7.js"></script>
-    <script src="js/latestSketch/lS_8.js"></script>
-    <script src="js/latestSketch/lS_9.js"></script>
     <script src="js/libraries/CCapture.all.min.js"></script>
     <script src="js/libraries/openSimpleNoise.js"></script>
     <script src="js/libraries/gif.worker.js"></script>
 </head>
 <body>
+    <a class="icon tooltip" href="https://github.com/8BitJonny/Generative-Design" target="_blank" rel="noopener noreferrer">
+        <img class="icon" src="media/GitHub-Mark-Light-120px-plus.png" alt="">
+        <span class="tooltiptext">Source Code</span>
+    </a>
     <div class="header">
         <pre>
  ██████╗ ███████╗███╗   ██╗███████╗██████╗  █████╗ ████████╗██╗██╗   ██╗███████╗
@@ -42,42 +37,86 @@
 ╚═════╝ ╚══════╝╚══════╝╚═╝ ╚═════╝ ╚═╝  ╚═══╝
         </pre>
     </div>
+
+    <div class="linkWrapper">
+        <div></div>
+        <div class="link">
+            <a href="/latestSketch1-4.html"><span>Next page </span></a>
+            <span>&#8680;</span>
+        </div>
+    </div>
+
     <div class="introduction">
         <h2>Introduction</h2>
+        <p>This website serves as a portfolio describing my work done for the CODE University Module Generative Design.</p>
         <p>
-            This website is a list of Generative Design Sketches inspired and guided by the CODE University module Generative Design.
+            First, I have to mention that this website is split into two parts. The first part is on this page and quickly describes the work I did in the Processing Learning Units.
+            On the following pages, I'll then describe the creation process of a new sketch that I made over the last two weeks. The source code can be found on Github which is linked
+            at the top of each page. I tried to build this website as barebone as possible so that no big web development framework distracts from the simplicity of the sketches.
+        </p>
+    </div>
+
+    <div>
+        <h2>Warning</h2>
+        <p>
+            P5.JS can sometimes cause problems as the website fails to load the sketches. I only experienced during development but if it should happen you have to force quit the website
+            and try to reload. You can close the browser for that or otherwise I can recommend the build-in task manager that the google chrome browser has. This lets you easily close
+            specific tabs that don't respond anymore instead of closing the whole browser. I try to resolve this issue as soon as possible.
+        </p>
+    </div>
+
+    <div>
+        <h2>Loopable Noise</h2>
+        <p>
+            The following artworks are inspired by an <a href="http://bit.ly/LoopingRandom" target="_blank" rel="noopener">article</a>
+            that my module coordinator Habu gave about being able to loop output from a noise function. The idea is to take in the time as an extra parameter into the noise function
+            and modify it in such a way that it loops back around to the value it stated on. For a more in-depth explanation, I recommend the linked article.
+        </p>
+
+        <p>
+            With the first sketch, I wanted to have a simple one to focus on getting warm with the concept of loopable noise.
+            I took the output of the noise function and mapped it to 5 different shades of grey.
         </p>
     </div>
 
     <div class="sketch" id="grayColorNoiseSketch"></div>
 
-    <img src="gif/GrayLayer.gif" />
+    <p>
+        And from the GIF down below you can already see that it worked. I recorded roughly 100 frames of the above sketch, created a GIF from it that loops forever
+        and you don't see a jump in the frames when the GIF starts over again.
+    </p>
+
+    <img src="media/gif/GrayLayer.gif" />
+
+    <p>
+        As a next step, I wanted to do something fancier with it. I played around a little bit and ended up with the following sketch where I calculate to different noise values
+        for each point in the grid and then move that point in x and y direction by these two noise values. I was surprised by how well it looks and the amazing 3D effect you get.
+        I then created two more variants of this sketch which you can see by changing the display options below the sketch.
+        The first one just colors each point each frame with a random color. I don't like it that much.
+        The second one was a crazy idea to try putting a text on this grid. With the help of a second sketch, I calculated the list of every point in the grid that needed to be
+        colored differently. I'm not super happy with it because the text doesn't look too good on it but it still worked out quite ok.
+    </p>
 
     <div class="sketch" id="offsetMesh"></div>
 
-    <img src="gif/OffsetMesh.gif" />
+    <p>Here you can see that also this sketch is loopable.</p>
 
-    <img src="gif/GridLandScape.gif" />
+    <img src="media/gif/OffsetMesh.gif" />
 
-    <h2>My latest sketch</h2>
+    <p>
+        And the last one isn't loopable but I saw a jersey at H&M which showed this hologram-like 3D terrain and I wanted to see how I can achieve that with my current sketch.
+        I took some time but I finally ended up with this GIF.
+    </p>
 
-    <div class="sketch" id="lS_1"></div>
+    <img src="media/gif/GridLandScape.gif" />
 
-    <div class="sketch" id="lS_2"></div>
-
-    <div class="sketch" id="lS_3"></div>
-
-    <div class="sketch" id="lS_4"></div>
-
-    <div class="sketch" id="lS_5"></div>
-
-    <div class="sketch" id="lS_6"></div>
-
-    <div class="sketch" id="lS_7"></div>
-
-    <div class="sketch" id="lS_8"></div>
-
-    <div class="sketch" id="lS_9"></div>
+    <div class="linkWrapper">
+        <div></div>
+        <div class="link">
+            <a href="/latestSketch1-4.html"><span>Next page </span></a>
+            <span>&#8680;</span>
+        </div>
+    </div>
 
     <footer>created by Timon Christiansen</footer>
 </body>

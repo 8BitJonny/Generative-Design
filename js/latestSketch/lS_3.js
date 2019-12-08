@@ -1,7 +1,8 @@
 new p5(( sketch ) => {
     sketch.setup = () => {
-        sketch.createCanvas(300,300);
+        sketch.createCanvas(300,150);
         sketch.angleMode(sketch.DEGREES);
+        sketch.noLoop();
     };
 
     sketch.draw = () => {
@@ -11,7 +12,7 @@ new p5(( sketch ) => {
         sketch.background(0);
         sketch.stroke(255);
 
-        sketch.translate(sketch.width / 2, sketch.height / 2);
+        sketch.translate(sketch.width / 2, sketch.height -10);
         sketch.rotate(180);
         drawNext(sketch,20, 20);
 
