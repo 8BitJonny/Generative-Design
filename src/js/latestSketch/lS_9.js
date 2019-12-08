@@ -29,7 +29,7 @@ new p5(( sketch ) => {
     }
 
     sketch.setup = () => {
-        sketch.createCanvas(600,300);
+        sketch.createCanvas(1000,500);
         sketch.angleMode(sketch.DEGREES);
 
         setupSelectElement();

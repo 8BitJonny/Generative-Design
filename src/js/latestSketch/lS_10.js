@@ -5,7 +5,7 @@ new p5(( sketch ) => {
     let maxAngle = 40;
     let targetRadius = 20;
 
-    const targets = shuffle([{x: 25.71831625342142, y: 105.89825887705393},
+    let targets = [{x: 25.71831625342142, y: 105.89825887705393},
         {x: 73.51218292083684, y: -297.11842444197185},
         {x: -177.89379832880792, y: -278.1496849059675},
         {x: -251.04065773216337, y: 265.05725065410644},
@@ -24,7 +24,7 @@ new p5(( sketch ) => {
         {x: -241.85932982896114, y: 297.0139139470424},
         {x: -241.43919141018094, y: 91.26517224570816},
         {x: -222.98636018781406, y: -68.86807466499546},
-        {x: 176.95227285451602, y: -59.81907861252892}]);
+        {x: 176.95227285451602, y: -59.81907861252892}];
     let reachedTargets = 0;
 
     let gameStarted = false;
@@ -45,6 +45,8 @@ new p5(( sketch ) => {
           gameStarted = true;
           startTime = new Date().getTime();
           gameTime = undefined;
+          reachedTargets = 0;
+          targets = shuffle(targets);
         }
     };
 
