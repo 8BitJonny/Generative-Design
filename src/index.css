@@ -8,7 +8,8 @@ body {
     background-color: #282828;
     color: white;
     margin: 50px auto;
-    width: 600px;
+    padding: 0 50px;
+    max-width: 1000px;
     display: flex;
     flex-direction: column;
     justify-content: center;
@@ -43,8 +44,14 @@ footer {
     width: 600px;
 }
 
-.sketch.small {
+.small {
     width: 400px;
+    height: 400px;
+}
+
+.tiny {
+    width: 200px;
+    height: 200px;
 }
 
 .sketch {
