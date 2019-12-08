@@ -39,17 +39,16 @@ new p5(( sketch ) => {
     };
 
     sketch.mouseClicked = () => {
-      if (gameStarted === false) {
+        if (sketch.mouseX <= 0 || sketch.mouseX > sketch.width || sketch.mouseY <= 0 || sketch.mouseY > sketch.height) return;
+
+        if (gameStarted === false) {
           gameStarted = true;
           startTime = new Date().getTime();
           gameTime = undefined;
-      }
+        }
     };
 
     sketch.draw = () => {
-        if (sketch.frameCount > 1 && (sketch.mouseX <= 0 || sketch.mouseX > sketch.width
-            || sketch.mouseY <= 0 || sketch.mouseY > sketch.height)) return;
-
         sketch.background(0);
 
         if (gameStarted === false) {
@@ -92,7 +91,7 @@ new p5(( sketch ) => {
         let xOffset = sketch.mouseX - halfWidth;
         let yOffset = sketch.mouseY - halfHeight;
 
-        if (sketch.mouseX !== 0 && sketch.mouseY !== 0) {
+        if (sketch.mouseX > 0 && sketch.mouseX < sketch.width && sketch.mouseY > 0 && sketch.mouseY < sketch.height) {
             length = sketch.map(yOffset, -halfWidth, halfWidth, -maxLength, maxLength);
             angle = sketch.map(xOffset, -halfHeight, halfHeight, -maxAngle, maxAngle);
         }
